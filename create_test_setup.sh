@@ -4,7 +4,7 @@ SSH_CONFIG=~/.ssh/config
 SSH_KEY=$(pwd)/ssh_key
 ANSIBLE_INVENTORY=./ansible-test
 HOSTNAME=ansible-test
-OS="ubuntu/mantic64"
+OS="debian/bullseye64"
 PORT=2222
 
 echo -ne "\n\n" | ssh-keygen -t ed25519 -f "$SSH_KEY"
