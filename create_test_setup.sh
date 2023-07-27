@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
 SSH_CONFIG=~/.ssh/config
-SSH_KEY=./ssh_key
+SSH_KEY=$(pwd)/ssh_key
 ANSIBLE_INVENTORY=./ansible-test
 HOSTNAME=ansible-test
-OS="debian/bookworm64"
+OS="ubuntu/mantic64"
+PORT=2222
 
-ssh-keygen -t ed25519 -N"" -q -f "$SSH_KEY"
+echo -ne "\n\n" | ssh-keygen -t ed25519 -f "$SSH_KEY"
 
 # Create vagrantfile
 function create_vagrantfile() {
@@ -24,11 +25,12 @@ create_vagrantfile
 
 function write_ssh_config() {
     cat << EOF >> "$SSH_CONFIG"
+
 Host ${HOSTNAME}
  User vagrant
  IdentityFile ${SSH_KEY}
  HostName localhost
- Port 2222
+ Port ${PORT}
  StrictHostKeyChecking=no
  UserKnownHostsFile=/dev/null
 EOF

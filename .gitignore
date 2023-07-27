@@ -1,3 +1,4 @@
 Vagrantfile
 ansible-test
 ssh_key*
+.vagrant
